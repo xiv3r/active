@@ -73,5 +73,5 @@ jobs:
           echo "All commits completed successfully!"
         shell: bash
         env:
-        USERNAME: ${{ github.actor }}
-        EMAIL: ${{ github.actor }}@users.noreply.github.com
+          USERNAME: ${{ github.actor }}
+          EMAIL: ${{ github.actor }}@users.noreply.github.com
