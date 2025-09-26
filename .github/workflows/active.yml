@@ -2,7 +2,7 @@ name: Xiv3r Auto Commit
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "* * * * *"
 
 jobs:
   commit:
