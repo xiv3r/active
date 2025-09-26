@@ -23,30 +23,6 @@ jobs:
       - name: Switch to main branch
         run: git checkout main
 
-      - name: Update README with timestamp
-        run: |
-          # Get current timestamp
-          TIMESTAMP=$(date +"%m-%d-%Y %H:%M")
-          
-          # Check if README.md exists, create if it doesn't
-          if [ ! -f "README.md" ]; then
-            echo "# Repository README" > README.md
-            echo "" >> README.md
-          fi
-          
-          # Add or update timestamp section
-          if grep -q "Last Auto Commit Update:" README.md; then
-            sed -i "s/Last Auto Commit Update: .*/Last Auto Commit Update: $TIMESTAMP/" README.md
-          else
-            echo "" >> README.md
-            echo "---" >> README.md
-            echo "### Auto Commit Status" >> README.md
-            echo "Last Auto Commit Update: $TIMESTAMP" >> README.md
-            echo "" >> README.md
-          fi
-          
-          echo "README.md updated with timestamp: $TIMESTAMP"
-
       - name: Loop Commit Updates
         run: |
           set -e
@@ -65,14 +41,6 @@ jobs:
 
             for ((i=1; i<=COMMIT_LOOP_COUNT; i++)); do
               echo "Iteration $i of $COMMIT_LOOP_COUNT"
-              
-              # Update timestamp in README on each iteration if it's the README file
-              if [ "$FILE" = "README.md" ]; then
-                TIMESTAMP=$(date +"%m-%d-%Y %H:%M")
-                sed -i "s/Last Update: .*/Last Update: $TIMESTAMP/" "README.md"
-                echo "Updated README timestamp to: $TIMESTAMP"
-              fi
-              
               if [ ! -f "$FILE" ]; then
                 echo "File not found, creating $FILE..."
                 echo "# Git Auto Commit | Hidden File" > "$FILE"
