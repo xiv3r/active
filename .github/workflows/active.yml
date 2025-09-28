@@ -27,8 +27,8 @@ jobs:
         run: |
           set -e
           
-          FILES=(".github/FILE_1.md" "README.md" ".github/FILE_2.md" ".github/FILE_3.md" ".github/FILE_4.md")  # List of files to update
-          COMMIT_LOOP_COUNT=5  # Reduced for testing, change back to 950 later
+          FILES=(".github/Xiver_1.md" "README.md" ".github/Xiver_2.md" ".github/Xiver_3.md" ".github/Xiver_4.md")  # List of files to update
+          COMMIT_LOOP_COUNT=950  # Reduced for testing, change back to 950 later
 
           for FILE in "${FILES[@]}"; do
             echo "Checking for file: $FILE"
@@ -43,10 +43,10 @@ jobs:
               echo "Iteration $i of $COMMIT_LOOP_COUNT"
               if [ ! -f "$FILE" ]; then
                 echo "File not found, creating $FILE..."
-                echo "# Git Auto Commit | Hidden File" > "$FILE"
-                echo "This file was added $(date +"%b %d, %Y")" >> "$FILE"
+                echo "# Git Commit" > "$FILE"
+                echo "This file was added - $(date +"%b %d, %Y")" >> "$FILE"
                 echo "" >> "$FILE"
-                echo "Daily git commit active" >> "$FILE"
+                echo "Daily git commit" >> "$FILE"
                 echo "" >> "$FILE"
                 echo "commit number: 1" >> "$FILE"
                 NEXT_COUNT=1
